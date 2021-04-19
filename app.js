@@ -1,5 +1,5 @@
 import { generateThreePoks } from './data-utils.js';
-import { capturePokPoks } from './local-storage.js';
+import { capturePokPoks } from './local-storage-utils.js';
 import { findByPokPokName } from './utils.js';
 
 const catchEmButton = document.querySelector('#catch-em-all');
@@ -36,8 +36,10 @@ function createPokPokDom() {
 
 createPokPokDom();
 
+let totalRounds = 0;
+
 catchEmButton.addEventListener('click', () => {
-    totalCaptures++;
+
     const selectedRadio = document.querySelector('input:checked');
 
     const pokObject = findByPokPokName(selectedRadio.value);
@@ -45,11 +47,10 @@ catchEmButton.addEventListener('click', () => {
     // we need to find the PokPok that is selected
 
     capturePokPoks(pokObject);
-
-    if (totalCaptures >= 10) {
-        window.location = '../results';
-    }
-
     createPokPokDom();
 
+    totalRounds++;
+    if (totalRounds === 10) {
+        window.location = './results';
+    }
 });

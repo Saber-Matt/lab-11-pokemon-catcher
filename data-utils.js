@@ -1,5 +1,5 @@
 import { pokPokData } from './data.js';
-import { encounterPokPok } from './local-storage.js';
+import { encounterPokPok } from './local-storage-utils.js';
 
 
 export function generateThreePoks() {
